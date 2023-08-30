@@ -2,6 +2,7 @@ import { askGPT } from "./gpt/gpt.js";
 import { createHistory, initialHistory, removeAllHistory } from "./history/history.js";
 import { getConverstationFromLocalStorage, getHistoryFromLocalStorage, saveConversation, saveHistory } from "./local_storage/local_storage.js";
 import { AssistantModel, Model, SystemModel, UserModel } from "./model/role_model.js";
+import { copyToClipBoard } from "./utils.js";
 
 // Assistant이 전문성 있는 글을 쓰는 전문가임을 설정
 const systemRole = new SystemModel('assistant는 전문성 있는 글을 쓰는 전문가야')
@@ -41,14 +42,6 @@ async function onSubmit(before: HTMLTextAreaElement, after: HTMLTextAreaElement)
   after.value = result.content;
   // 히스토리 화면에 대화 내용을 표시
   createHistory(result);
-}
-
-/**
- * 클립보드에 글을 복사
- * @param text 변환된 글
- */
-async function copyToClipBoard(text: string) {
-  await navigator.clipboard.writeText(text)
 }
 
 
@@ -94,6 +87,13 @@ async function main() {
 
 main()
 
-// TODO: 로딩중일때 로딩창 구현하기
 // TODO: 리드미 작성
 // TODO: 배포 서버 구축
+// TODO: 새로운 대화 만들기 버튼 추가
+// TODO: 새로운 대화 만들기 로직 추가
+// TODO: 히스토리 UI 개선 (최대 높이 설정하기, 기록별 패딩 설정)
+// TODO: 히스토리 클릭시 클립보드에 해당 내용 복사하기
+// TODO: 제목 및 부제목 개선
+// TODO: 모바일 대응
+// TODO: 다크모드 대응
+// TODO: 모듈화

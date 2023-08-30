@@ -2,6 +2,7 @@ import { askGPT } from "./gpt/gpt.js";
 import { createHistory, initialHistory, removeAllHistory } from "./history/history.js";
 import { getConverstationFromLocalStorage, getHistoryFromLocalStorage, saveConversation, saveHistory } from "./local_storage/local_storage.js";
 import { SystemModel, UserModel } from "./model/role_model.js";
+import { copyToClipBoard } from "./utils.js";
 // Assistant이 전문성 있는 글을 쓰는 전문가임을 설정
 const systemRole = new SystemModel('assistant는 전문성 있는 글을 쓰는 전문가야');
 // 이전 대화가 없을 경우 새로운 대화를 생성
@@ -32,13 +33,6 @@ async function onSubmit(before, after) {
     after.value = result.content;
     // 히스토리 화면에 대화 내용을 표시
     createHistory(result);
-}
-/**
- * 클립보드에 글을 복사
- * @param text 변환된 글
- */
-async function copyToClipBoard(text) {
-    await navigator.clipboard.writeText(text);
 }
 // =========== 실행 ============
 async function main() {
