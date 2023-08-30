@@ -32,9 +32,11 @@
         <div
           class="flex flex-row relative bg-[#f3f3f2] py-1 items-center rounded-t-lg border-2 border-[#d4d4d4] h-[40px]"
         >
-          <div class="rounded-lg w-[15px] h-[15px] bg-[#FF5651] mx-2"></div>
-          <div class="rounded-lg w-[15px] h-[15px] bg-[#FFB640] mr-2"></div>
-          <div class="rounded-lg w-[15px] h-[15px] bg-[#00C347]"></div>
+          <div class="flex flex-row" >
+            <div class="rounded-lg w-[15px] h-[15px] bg-[#FF5651] mx-2"></div>
+            <div class="rounded-lg w-[15px] h-[15px] bg-[#FFB640] mr-2"></div>
+            <div class="rounded-lg w-[15px] h-[15px] bg-[#00C347]"></div>
+          </div>
           <p class="flex relative pl-[5%]">변환기</p>
         </div>
 
@@ -43,7 +45,7 @@
           <div class="flex flex-row p-[10px] items-center justify-between" >
             <p class="text-2xl pb-[10px]">변환 이전</p>
             <button id="submit"
-              class="flex self-center relative justify-center items-center justify-self-center  p-[10px] w-[300px] bg-sky-200 rounded-lg"
+              class="flex self-center relative justify-center items-center justify-self-center  p-[10px] w-[150px] bg-sky-200 rounded-lg"
               type="submit">
               변환
             </button>
@@ -90,14 +92,21 @@
         <div class="flex flex-col w-full h-full relative rounded-b-lg">
           <!-- 닫기, 최소화, 최대화 버튼 -->
           <div
-            class="flex flex-row relative bg-[#f3f3f2] py-1 items-center rounded-t-lg border-2 border-[#d4d4d4] h-[40px]"
+            class="flex flex-row relative bg-[#f3f3f2] py-1 items-center justify-between rounded-t-lg border-2 border-[#d4d4d4] h-[40px]"
           >
-            <div class="rounded-lg w-[15px] h-[15px] bg-[#FF5651] mx-2"></div>
-            <div class="rounded-lg w-[15px] h-[15px] bg-[#FFB640] mr-2"></div>
-            <div class="rounded-lg w-[15px] h-[15px] bg-[#00C347]"></div>
-            <p class="flex relative pl-[5%]">히스토리</p>
+            <div class="flex flex-row">
+              <div class="rounded-lg w-[15px] h-[15px] bg-[#FF5651] mx-2"></div>
+              <div class="rounded-lg w-[15px] h-[15px] bg-[#FFB640] mr-2"></div>
+              <div class="rounded-lg w-[15px] h-[15px] bg-[#00C347]"></div>
+            </div>
+            <p class="flex relative">히스토리 (클릭하면 복사됩니다.)</p>
+            <button id="clear" class="justify-self-end mr-[15px] bg-red-300 px-[10px] rounded-lg text-white
+            " type="submit">지우기</button>
           </div>
-          <div class="min-h-[500px] bg-white rounded-b-lg  border-[#d4d4d4] border-x-2 border-b-2"></div>
+          <div id="history" class="min-h-[500px] bg-white rounded-b-lg  border-[#d4d4d4] border-x-2 border-b-2 p-[5px]">
+            <!-- <p class="flex border-2 p-[5px] rounded-lg w-full" >결과는 여기에 표시 됩니다
+            </p> -->
+          </div>
         </div>
       </div>
     </div>
