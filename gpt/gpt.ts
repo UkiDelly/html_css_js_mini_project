@@ -16,6 +16,3 @@ export async function askGPT(data: Model[]): Promise<AssistantModel> {
   const result = await response.json() as ChatGptResponseInterface
   return new ChatGptResponse(result).getAssistantModel()
 }
-
-
-

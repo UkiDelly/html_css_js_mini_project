@@ -64,6 +64,4 @@ export class AssistantModel implements Model {
   static fromChatGptResponse(object: ChatGptResponseInterface): AssistantModel {
     return new AssistantModel(object.choices[0].message.content);
   }
-
-
 }
