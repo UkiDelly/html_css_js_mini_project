@@ -1,6 +1,6 @@
 import { ChatGptResponseInterface } from "./chat_gpt_response";
 
-enum Role {
+export enum Role {
   user = 'user',
   system = 'system',
   assistant = 'assistant'
