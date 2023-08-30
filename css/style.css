@@ -1,8 +1,28 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css");
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css');
 
 * {
   font-family: 'Pretendard';
+}
+
+@media (min-width: 1300px) {
+  #history-window {
+    width: 30%;
+  }
+
+  #question-window {
+    width: 70%;
+  }
+}
+
+@media (min-width:1000px) {
+  #history-window {
+      width: 40%;
+    }
+  
+    #question-window {
+      width: 60%;
+    }
 }
