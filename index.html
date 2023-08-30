@@ -12,7 +12,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body
-    class="bg-[#CCCCCC] flex flex-col relative w-full items-center justify-items-center p-[10px]"
+    class="bg-[#F6F6F6] flex flex-col relative w-full items-center justify-items-center p-[10px]"
   >
     <h1 class="md:text-7xl mb-[20px]">글 나루</h1>
     <p class="mb-[20px]">
@@ -30,7 +30,7 @@
       >
         <!-- 닫기, 최소화, 최대화 버튼 -->
         <div
-          class="flex flex-row relative bg-[#f3f3f2] py-1 items-center rounded-t-lg border-b-2 border-[#d4d4d4] h-[40px]"
+          class="flex flex-row relative bg-[#f3f3f2] py-1 items-center rounded-t-lg border-2 border-[#d4d4d4] h-[40px]"
         >
           <div class="rounded-lg w-[15px] h-[15px] bg-[#FF5651] mx-2"></div>
           <div class="rounded-lg w-[15px] h-[15px] bg-[#FFB640] mr-2"></div>
@@ -39,8 +39,16 @@
         </div>
 
         <!-- 텍스트 영역 -->
-        <div class="flex flex-col min-h-[500px] p-[10px] bg-white rounded-b-lg">
-          <p class="text-2xl pb-[10px]">변환 이전</p>
+        <div class="flex flex-col min-h-[500px] p-[10px] bg-white border-[#d4d4d4] border-x-2 border-b-2 rounded-b-lg">
+          <div class="flex flex-row p-[10px] items-center justify-between" >
+            <p class="text-2xl pb-[10px]">변환 이전</p>
+            <button id="submit"
+              class="flex self-center relative justify-center items-center justify-self-center  p-[10px] w-[300px] bg-sky-200 rounded-lg"
+              type="submit">
+              변환
+            </button>
+          </div>
+
           <textarea
             name="before-change"
             id="text-before"
@@ -50,15 +58,16 @@
             wrap="soft"
             placeholder="문장 또는 문단을 입력해주세요..."
           ></textarea>
-          <div class="flex flex-row justify-between items-center">
-            <p class="text-2xl py-[10px]">늘린 결과</p>
-            <button
-              class="flex self-center relative justify-center items-center justify-self-center  p-[10px] w-[300px] bg-sky-200 rounded-lg"
-              type="submit"
-            >
-              늘리기
-            </button>
-          </div>
+            <div class="flex flex-row justify-between px-[10px]">
+              <p class="text-2xl py-[15px]">변환 결과</p>
+              <button id="copy"
+                class="flex self-center relative justify-center items-center justify-self-center  p-[10px] w-[150px] bg-sky-200 rounded-lg"
+                type="button">
+                <img  class="flex mr-[10px]" width="24" height="24" src="https://img.icons8.com/sf-black-filled/64/documents.png" alt="documents" />
+                복사하기
+              </button>
+            </div>
+            
           <!-- <input id="text-after" type="text" placeholder="결과가 여기에 표시됩니다." readonly> -->
           <textarea
             name="after-change"
@@ -69,25 +78,26 @@
             wrap="soft"
             readonly
             placeholder="결과가 여기에 표시됩니다."
-          ></textarea>
+          >
+        </textarea>
         </div>
       </div>
 
       <!-- 히스토리 -->
       <div
-        class="flex relative bg-white w-full md:w-[30%] h-full md:ml-[40px] mt-[40px] md:mt-0 rounded-lg shadow-2xl"
+        class="flex relative bg-white w-full md:w-[30%] h-full md:ml-[40px] mt-[40px] md:mt-0 rounded-lg shadow-2xl "
       >
         <div class="flex flex-col w-full h-full relative rounded-b-lg">
           <!-- 닫기, 최소화, 최대화 버튼 -->
           <div
-            class="flex flex-row relative bg-[#f3f3f2] py-1 items-center rounded-t-lg border-b-2 h-[40px]"
+            class="flex flex-row relative bg-[#f3f3f2] py-1 items-center rounded-t-lg border-2 border-[#d4d4d4] h-[40px]"
           >
             <div class="rounded-lg w-[15px] h-[15px] bg-[#FF5651] mx-2"></div>
             <div class="rounded-lg w-[15px] h-[15px] bg-[#FFB640] mr-2"></div>
             <div class="rounded-lg w-[15px] h-[15px] bg-[#00C347]"></div>
             <p class="flex relative pl-[5%]">히스토리</p>
           </div>
-          <div class="min-h-[500px] bg-white rounded-b-lg"></div>
+          <div class="min-h-[500px] bg-white rounded-b-lg  border-[#d4d4d4] border-x-2 border-b-2"></div>
         </div>
       </div>
     </div>
