@@ -12,41 +12,83 @@
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body
-    class="bg-[#F6F6F6] flex flex-col relative w-full items-center justify-items-center p-[10px]"
-  >
-    <h1 class="md:text-7xl mb-[20px]">글 나루</h1>
-    <p class="mb-[20px]">
-      요즘은 글쓰는데에 익숙하지 않아 에세이 쓰시가 매우 힘들죠? ChatGPT의
-      도움을 받아서 에세이를 늘려봅니다!
+    class="bg-[#F6F6F6] flex flex-col relative w-full items-center justify-items-center p-[10px]">
+    <h1 class="text-7xl mb-[20px]">글 나루</h1>
+
+    <p class="mb-[20px] ">
+      글마루는 ChatGPT의 도움을 받아 문장이나 문단을 전문성 있는 글로 바꿔주는
+      서비스로, 짧은 문장이나 단편적인 문단을 길고 전문적인 글로 바꿔주는 데
+      도움이 줍니다.
     </p>
+
+    <div class="flex flex-row justify-around w-full " >
+      <div class="flex flex-col">
+        <p>글마루는 다음과 같은 사람들에게 유용합니다.</p>
+        <ul class="list-disc">
+          <li>글을 쓰는 데 어려움을 겪는 사람들</li>
+          <li>글을 길게 쓰고 싶은 사람들</li>
+          <li>글을 전문적으로 쓰고 싶은 사람들</li>
+        </ul>
+      </div>
+      
+      <div class="flex flex-col">
+        <p>사용법</p>
+        <ul class="flex flex-col list-decimal">
+          <li>변환하고자 하는 글을 입력해주세요</li>
+          <li>`변환` 버튼을 눌러주시고 잠시만 기다려 주세요</li>
+          <li>변환된 문장 또는 문단을 복사하여 원하는 곳에 붙여주세요.</li>
+          <li>대화 초기화를 원할 경우 `초기화`을, 대화 기록을 삭제 하고 싶은 경우,<br>
+            `지우기` 버튼을 눌러주세요.</li>
+        </ul>
+      </div>
+    </div>
 
     <!-- 메인 -->
     <div
-      class="flex flex-col md:flex-row w-full px-[20px] justify-center items-start relative"
+      class="flex flex-col min-[830px]:flex-row w-full px-[20px] justify-center items-start relative"
     >
       <!-- Question Mac windows -->
       <div
-        class="flex flex-col w-full md:w-[70%] h-full relative rounded-b-lg shadow-2xl"
+        id="question-window"
+        class="flex flex-col w-full h-full relative rounded-b-lg shadow-2xl"
       >
         <!-- 닫기, 최소화, 최대화 버튼 -->
         <div
-          class="flex flex-row relative bg-[#f3f3f2] py-1 items-center rounded-t-lg border-2 border-[#d4d4d4] h-[40px]"
+          class="flex flex-row relative bg-[#f3f3f2] py-1 justify-between items-center rounded-t-lg border-2 border-[#d4d4d4] h-[40px]"
         >
-          <div class="flex flex-row" >
+          <div class="flex flex-row">
             <div class="rounded-lg w-[15px] h-[15px] bg-[#FF5651] mx-2"></div>
             <div class="rounded-lg w-[15px] h-[15px] bg-[#FFB640] mr-2"></div>
             <div class="rounded-lg w-[15px] h-[15px] bg-[#00C347]"></div>
           </div>
           <p class="flex relative pl-[5%]">변환기</p>
+          <button
+            id="reset-button"
+            class="flex self-center relative justify-center items-center justify-self-center mr-[10px] py-[2.5px] px-[10px] w-fit bg-sky-200 rounded-lg"
+            type="reset"
+          >
+            <img
+              width="20"
+              height="20"
+              class="pr-[5px]"
+              src="https://img.icons8.com/ios-glyphs/30/recurring-appointment.png"
+              alt="recurring-appointment"
+            />
+            초기화하기
+          </button>
         </div>
 
         <!-- 텍스트 영역 -->
-        <div class="flex flex-col min-h-[500px] p-[10px] bg-white border-[#d4d4d4] border-x-2 border-b-2 rounded-b-lg">
-          <div class="flex flex-row p-[10px] items-center justify-between" >
+        <div
+          class="flex flex-col min-h-[500px] p-[10px] bg-white border-[#d4d4d4] border-x-2 border-b-2 rounded-b-lg"
+        >
+          <div class="flex flex-row p-[10px] items-center justify-between">
             <p class="text-2xl pb-[10px]">변환 이전</p>
-            <button id="submit"
-              class="flex self-center relative justify-center items-center justify-self-center  p-[10px] w-[150px] bg-sky-200 rounded-lg"
-              type="submit">
+            <button
+              id="submit"
+              class="flex self-center relative justify-center items-center justify-self-center p-[10px] w-[150px] bg-sky-200 rounded-lg"
+              type="submit"
+            >
               변환
             </button>
           </div>
@@ -60,16 +102,24 @@
             wrap="soft"
             placeholder="문장 또는 문단을 입력해주세요..."
           ></textarea>
-            <div class="flex flex-row justify-between px-[10px]">
-              <p class="text-2xl py-[15px]">변환 결과</p>
-              <button id="copy"
-                class="flex self-center relative justify-center items-center justify-self-center  p-[10px] w-[150px] bg-sky-200 rounded-lg"
-                type="button">
-                <img  class="flex mr-[10px]" width="24" height="24" src="https://img.icons8.com/sf-black-filled/64/documents.png" alt="documents" />
-                복사하기
-              </button>
-            </div>
-            
+          <div class="flex flex-row justify-between px-[10px]">
+            <p class="text-2xl py-[15px]">변환 결과</p>
+            <button
+              id="copy"
+              class="flex self-center relative justify-center items-center justify-self-center p-[10px] w-[150px] bg-sky-200 rounded-lg"
+              type="button"
+            >
+              <img
+                class="flex mr-[10px]"
+                width="24"
+                height="24"
+                src="https://img.icons8.com/sf-black-filled/64/documents.png"
+                alt="documents"
+              />
+              복사하기
+            </button>
+          </div>
+
           <!-- <input id="text-after" type="text" placeholder="결과가 여기에 표시됩니다." readonly> -->
           <textarea
             name="after-change"
@@ -81,13 +131,14 @@
             readonly
             placeholder="결과가 여기에 표시됩니다."
           >
-        </textarea>
+          </textarea>
         </div>
       </div>
 
       <!-- 히스토리 -->
       <div
-        class="flex relative bg-white w-full md:w-[30%] h-full md:ml-[40px] mt-[40px] md:mt-0 rounded-lg shadow-2xl "
+        id="history-window"
+        class="flex relative bg-white w-full h-full min-[830px]:ml-[40px] mt-[40px] min-[830px]:mt-0 rounded-lg shadow-2xl"
       >
         <div class="flex flex-col w-full h-full relative rounded-b-lg">
           <!-- 닫기, 최소화, 최대화 버튼 -->
@@ -100,10 +151,18 @@
               <div class="rounded-lg w-[15px] h-[15px] bg-[#00C347]"></div>
             </div>
             <p class="flex relative">히스토리 (클릭하면 복사됩니다.)</p>
-            <button id="clear" class="justify-self-end mr-[15px] bg-red-300 px-[10px] rounded-lg text-white
-            " type="submit">지우기</button>
+            <button
+              id="clear"
+              class="justify-self-end mr-[15px] bg-red-300 px-[10px] rounded-lg text-white"
+              type="submit"
+            >
+              지우기
+            </button>
           </div>
-          <div id="history" class="min-h-[500px] bg-white rounded-b-lg  border-[#d4d4d4] border-x-2 border-b-2 p-[5px]">
+          <div
+            id="history"
+            class="min-h-[500px] bg-white rounded-b-lg border-[#d4d4d4] border-x-2 border-b-2 p-[5px]"
+          >
             <!-- <p class="flex border-2 p-[5px] rounded-lg w-full" >결과는 여기에 표시 됩니다
             </p> -->
           </div>
@@ -111,4 +170,67 @@
       </div>
     </div>
   </body>
+
+  <footer
+    class="flex flex-col justify-between w-full h-[200px] mt-12 px-[20px]"
+  >
+    <div class="flex flex-row justify-between">
+      <div class="flex flex-col">
+        <!-- 서비스 이름 -->
+        <h1 class="text-4xl">글 나루</h1>
+
+        <!-- 내 정보 -->
+        <div class="flex flex-col mt-[20px]">
+          <p class="">👨🏻‍💻 Daehyeon Song</p>
+          <a
+            href="https://github.com/Ukidelly"
+            class="flex items-center underline"
+            target="_blank"
+          >
+            <img
+              class="flex mr-[5px]"
+              width="20"
+              height="20"
+              src="https://img.icons8.com/ios-glyphs/30/github.png"
+              alt="github"
+            />Github
+          </a>
+          <a
+            href="https://www.notion.so/daehyeonsong/Delly-Flutter-Junior-Developer-31118ac811214ebea0729bd69f14ce47?pvs=4"
+            class="flex items-center underline"
+            target="_blank"
+          >
+            <img
+              class="flex mr-[5px]"
+              width="20"
+              height="20"
+              src="https://img.icons8.com/ios/50/notion.png"
+              alt="notion"
+            />
+            Notion
+          </a>
+        </div>
+      </div>
+
+      <div class="flex flex-col">
+        <p>Resources</p>
+        <a
+          href="https://icons8.com/"
+          class="underline text-gray-500"
+          target="_blank"
+          >https://icons8.com/</a
+        >
+      </div>
+
+      <div></div>
+      <div></div>
+    </div>
+
+    <div class="flex flex-col"></div>
+    <div>
+      <p>ⓒ 2022 Daehyeon Song. all rights reserved.</p>
+      <p></p>
+      <p></p>
+    </div>
+  </footer>
 </html>
