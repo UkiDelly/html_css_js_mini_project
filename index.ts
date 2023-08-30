@@ -1,25 +1,52 @@
 import { askGPT } from "./gpt/gpt.js";
-import { getFromLocalStorage, saveToLocalStorage } from "./local_storage/local_storage.js";
-import { Model, SystemModel, UserModel } from "./model/role_model.js";
-const systemRole = new SystemModel('assistant는 전문성 있는 글을 쓰는 전문가야')
-const data: Model[] = [systemRole];
+import { createHistory, initialHistory, removeAllHistory } from "./history/history.js";
+import { getConverstationFromLocalStorage, getHistoryFromLocalStorage, saveConversation, saveHistory } from "./local_storage/local_storage.js";
+import { AssistantModel, Model, SystemModel, UserModel } from "./model/role_model.js";
 
+// Assistant이 전문성 있는 글을 쓰는 전문가임을 설정
+const systemRole = new SystemModel('assistant는 전문성 있는 글을 쓰는 전문가야')
+
+// 이전 대화가 없을 경우 새로운 대화를 생성
+const conversation: Model[] = getConverstationFromLocalStorage().length == 0 ? [systemRole] : getConverstationFromLocalStorage();
+
+// 히스토리 가져오기
+const historyList: AssistantModel[] = getHistoryFromLocalStorage();
+
+
+/**
+ * 변환 버튼을 눌렀을때 실행
+ * @param before 전송할 글의 html 태그
+ * @param after 변환된 글의 html 태그
+ */
 async function onSubmit(before: HTMLTextAreaElement, after: HTMLTextAreaElement) {
-  const beforeText = before.value;
-  const userModel = new UserModel(beforeText);
-  console.log(userModel);
-  data.push(userModel);
-  console.log(data);
-  const result = await askGPT(data);
-  console.log(result);
-  data.push(result);
-  saveToLocalStorage(data);
-  console.log(data);
+
+  // 새로운 user model 생성
+  const userModel = new UserModel(before.value);
+  // 대화에 추가
+  conversation.push(userModel);
+
+  // 챗지피티에게 요철
+  const result = await askGPT(conversation);
+
+  // 응답을 대화에 추가
+  conversation.push(result);
+  // 응답을 히스토리에 추가
+  historyList.push(result);
+  // 대화 내용을 로컬 저장소에 저장
+  saveConversation(conversation);
+  // 히스토리 내용을 로컬 저장소에 저장
+  saveHistory(historyList);
+
+  // 응답 내용을 화면에 표시
   after.value = result.content;
-  const localStorageData = getFromLocalStorage();
-  console.log(localStorageData);
+  // 히스토리 화면에 대화 내용을 표시
+  createHistory(result);
 }
 
+/**
+ * 클립보드에 글을 복사
+ * @param text 변환된 글
+ */
 async function copyToClipBoard(text: string) {
   await navigator.clipboard.writeText(text)
 }
@@ -29,11 +56,16 @@ async function copyToClipBoard(text: string) {
 
 async function main() {
 
+  // 최초 실행때, 히스토리 화면에 대화 내용을 표시
+  initialHistory(historyList)
+
   const $textBefore: HTMLTextAreaElement = document.getElementById('text-before') as HTMLTextAreaElement;
   const $textAfter: HTMLTextAreaElement = document.getElementById('text-after') as HTMLTextAreaElement;
   const $transferButton: HTMLButtonElement = document.getElementById('submit') as HTMLButtonElement;
   const $copyButton: HTMLButtonElement = document.getElementById('copy') as HTMLButtonElement;
+  const $clearButton: HTMLButtonElement = document.getElementById('clear') as HTMLButtonElement;
 
+  // 변환 버튼을 눌렀을때
   $transferButton?.addEventListener('click', async () => {
     $transferButton.disabled = true
     $transferButton.style.backgroundColor = 'lightgray'
@@ -44,12 +76,21 @@ async function main() {
     $transferButton.innerText = "변환"
   });
 
+
+  // 클립보드에 글을 복사
   $copyButton?.addEventListener('click', async () => {
     await copyToClipBoard($textAfter.value)
+    window.alert('복사 완료!')
   })
 
 
+  // 히스토리 초기화
+  $clearButton?.addEventListener('click', () => {
+    removeAllHistory()
+    localStorage.clear()
+  })
 }
+
 
 main()
 

@@ -1,22 +1,20 @@
-import { AssistantModel, Model, Role, SystemModel, UserModel } from "../model/role_model.js";
+import { AssistantModel, Model } from "../model/role_model.js";
 
 
-export function saveToLocalStorage(data: Model[]) {
-  localStorage.setItem('data', JSON.stringify(data));
+export function saveConversation(data: Model[]) {
+  localStorage.setItem('conversation', JSON.stringify(data));
 }
 
-export function getFromLocalStorage(): Model[] {
-  const modelList: Model[] = JSON.parse(localStorage.getItem('data') || '[]');
-  return modelList.map((element) => {
-    switch (element.role) {
-      case Role.system:
-        return new SystemModel(element.content);
+export function saveHistory(data: AssistantModel[]) {
+  localStorage.setItem('history', JSON.stringify(data));
+}
 
-      case Role.user:
-        return new UserModel(element.content);
+export function getConverstationFromLocalStorage(): Model[] {
+  const data: Model[] = JSON.parse(localStorage.getItem('conversation') || '[]');
+  return data
+}
 
-      case Role.assistant:
-        return new AssistantModel(element.content);
-    }
-  })
+export function getHistoryFromLocalStorage(): AssistantModel[] {
+  const modelList: AssistantModel[] = JSON.parse(localStorage.getItem('history') || '[]');
+  return modelList
 }
