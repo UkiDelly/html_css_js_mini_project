@@ -1,11 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css');
+/* @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css'); */
+@font-face {
+  font-family: 'Haeparang';
+  src: url('../assets/Yeongdeok_Haeparang.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
 
 * {
-  font-family: 'Pretendard';
+  font-family: 'Haeparang';
 }
+
 
 @media (min-width: 1300px) {
   #history-window {
