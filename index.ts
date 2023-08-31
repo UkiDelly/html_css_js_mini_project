@@ -1,19 +1,10 @@
+
+import { addConversation, createNewConversation, getConversation } from "./conversation/converation.js";
 import { askGPT } from "./gpt/gpt.js";
-import { createHistory, initialHistory, removeAllHistory } from "./history/history.js";
-import { getConverstationFromLocalStorage, getHistoryFromLocalStorage, removeAllData, saveConversation, saveHistory } from "./local_storage/local_storage.js";
-import { AssistantModel, Model, SystemModel, UserModel } from "./model/role_model.js";
+import { addHistory, removeAllHistory } from "./history/history.js";
+import { removeAllData } from "./local_storage/local_storage.js";
+import { UserModel } from "./model/role_model.js";
 import { copyToClipBoard } from "./utils.js";
-
-// Assistant이 전문성 있는 글을 쓰는 전문가임을 설정
-const systemRole = new SystemModel('assistant는 전문성 있는 글을 쓰는 전문가야')
-
-// 이전 대화가 없을 경우 새로운 대화를 생성
-var conversation: Model[] = getConverstationFromLocalStorage().length == 0 ? [systemRole] : getConverstationFromLocalStorage();
-
-// 히스토리 가져오기
-const historyList: AssistantModel[] = getHistoryFromLocalStorage();
-
-
 /**
  * 변환 버튼을 눌렀을때 실행
  * @param before 전송할 글의 html 태그
@@ -24,33 +15,23 @@ async function onSubmit(before: HTMLTextAreaElement, after: HTMLTextAreaElement)
   // 새로운 user model 생성
   const userModel = new UserModel(before.value);
   // 대화에 추가
-  conversation.push(userModel);
+  addConversation(userModel)
 
   // 챗지피티에게 요철
-  const result = await askGPT(conversation);
+  const result = await askGPT(getConversation());
 
   // 응답을 대화에 추가
-  conversation.push(result);
+  addConversation(result);
   // 응답을 히스토리에 추가
-  historyList.push(result);
-  // 대화 내용을 로컬 저장소에 저장
-  saveConversation(conversation);
-  // 히스토리 내용을 로컬 저장소에 저장
-  saveHistory(historyList);
-
+  addHistory(result);
   // 응답 내용을 화면에 표시
   after.value = result.content;
-  // 히스토리 화면에 대화 내용을 표시
-  createHistory(result);
 }
 
 
 // =========== 실행 ============
 
 async function main() {
-
-  // 최초 실행때, 히스토리 화면에 대화 내용을 표시
-  initialHistory(historyList)
 
   const $textBefore: HTMLTextAreaElement = document.getElementById('text-before') as HTMLTextAreaElement;
   const $textAfter: HTMLTextAreaElement = document.getElementById('text-after') as HTMLTextAreaElement;
@@ -86,7 +67,7 @@ async function main() {
 
   // 초기화 버튼
   $resetButton.addEventListener('click', () => {
-    conversation = [systemRole]
+    createNewConversation()
     removeAllHistory()
     removeAllData()
   })

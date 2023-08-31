@@ -45,6 +45,11 @@ export class ChatGptResponse implements ChatGptResponseInterface {
     this.usage = object.usage;
   }
 
+  /**
+   * AssistantModel을 추출해주는 함수
+   *
+   * @return {AssistantModel} AssistantModel 인스턴스
+   */
   public getAssistantModel(): AssistantModel {
     return new AssistantModel(this.choices[0].message.content);
   }

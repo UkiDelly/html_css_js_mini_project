@@ -116,16 +116,15 @@ ChatGpt에게 요청하는 부분을 따로 분리하여 함수로 정의 했습
 
 ![local storage](readme_asset/local_storage.png)
 
-- `saveConversation()` 함수는 chatGPT와 나눈 데이터들을 저장하기 위해 쓰이는 함수입니다.
+- `saveConversationToLocalStorage()` 함수는 chatGPT와 나눈 데이터들을 저장하기 위해 쓰이는 함수입니다.
 
-- `saveHistory()` 함수는 `history` 데이터를 저장하기 위해 쓰이는 함수입니다.
+- `saveHistoryToLocalStorage()` 함수는 `history` 데이터를 저장하기 위해 쓰이는 함수입니다.
 
 - `getConversationFromLocalStorage()` 함수는 `local storage`에서 conversation 데이터를 읽어오는 함수입니다.
 
 - `getHistoryFromLocalStorage()` 함수는 `local storage`에서 history 데이터를 읽어오는 함수입니다.
 
 - `removeAllData()` 함수는 초기화 버튼을 눌렀을때 `local storage`에 저장된 모든 데이터를 삭제하는 사용되는 함수입니다.
-
 
 ## History
 

@@ -1,7 +1,8 @@
-export function saveConversation(data) {
-    localStorage.setItem('conversation', JSON.stringify(data));
+import { getConversation } from "../conversation/converation.js";
+export function saveConversationToLocalStorage() {
+    localStorage.setItem('conversation', JSON.stringify(getConversation()));
 }
-export function saveHistory(data) {
+export function saveHistoryToLocalStorage(data) {
     localStorage.setItem('history', JSON.stringify(data));
 }
 export function getConverstationFromLocalStorage() {
@@ -11,6 +12,9 @@ export function getConverstationFromLocalStorage() {
 export function getHistoryFromLocalStorage() {
     const modelList = JSON.parse(localStorage.getItem('history') || '[]');
     return modelList;
+}
+export function removeHistoryFromLocalStorage() {
+    localStorage.removeItem('history');
 }
 export function removeAllData() {
     localStorage.clear();

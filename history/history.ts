@@ -1,5 +1,12 @@
+import { getHistoryFromLocalStorage, saveHistoryToLocalStorage } from "../local_storage/local_storage.js";
 import { AssistantModel } from "../model/role_model.js";
 import { copyToClipBoard } from "../utils.js";
+
+// 히스토리 가져오기
+var historyList: AssistantModel[] = getHistoryFromLocalStorage();
+
+// 최초 실행때, 히스토리 화면에 대화 내용을 표시
+initialHistory(historyList)
 
 export function createHistory(assistantModel: AssistantModel) {
   const $historyContainer = document.getElementById('history')
@@ -26,5 +33,15 @@ export function initialHistory(data: AssistantModel[]) {
 
 export function removeAllHistory() {
   const $historyContainer = document.getElementById('history')
+  historyList = []
+
   $historyContainer!.innerHTML = ''
+}
+
+export function addHistory(data: AssistantModel): void {
+  historyList.push(data)
+  // 히스토리 화면에 대화 내용을 표시
+  createHistory(data);
+  // 히스토리 내용을 로컬 저장소에 저장
+  saveHistoryToLocalStorage(historyList);
 }
