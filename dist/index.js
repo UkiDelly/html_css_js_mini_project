@@ -1,12 +1,12 @@
 import { askGPT } from "./gpt/gpt.js";
 import { createHistory, initialHistory, removeAllHistory } from "./history/history.js";
-import { getConverstationFromLocalStorage, getHistoryFromLocalStorage, saveConversation, saveHistory } from "./local_storage/local_storage.js";
+import { getConverstationFromLocalStorage, getHistoryFromLocalStorage, removeAllData, saveConversation, saveHistory } from "./local_storage/local_storage.js";
 import { SystemModel, UserModel } from "./model/role_model.js";
 import { copyToClipBoard } from "./utils.js";
 // Assistant이 전문성 있는 글을 쓰는 전문가임을 설정
 const systemRole = new SystemModel('assistant는 전문성 있는 글을 쓰는 전문가야');
 // 이전 대화가 없을 경우 새로운 대화를 생성
-const conversation = getConverstationFromLocalStorage().length == 0 ? [systemRole] : getConverstationFromLocalStorage();
+var conversation = getConverstationFromLocalStorage().length == 0 ? [systemRole] : getConverstationFromLocalStorage();
 // 히스토리 가져오기
 const historyList = getHistoryFromLocalStorage();
 /**
@@ -43,6 +43,7 @@ async function main() {
     const $transferButton = document.getElementById('submit');
     const $copyButton = document.getElementById('copy');
     const $clearButton = document.getElementById('clear');
+    const $resetButton = document.getElementById('reset-button');
     // 변환 버튼을 눌렀을때
     $transferButton?.addEventListener('click', async () => {
         $transferButton.disabled = true;
@@ -61,7 +62,13 @@ async function main() {
     // 히스토리 초기화
     $clearButton?.addEventListener('click', () => {
         removeAllHistory();
-        localStorage.clear();
+        localStorage.removeItem('history');
+    });
+    // 초기화 버튼
+    $resetButton.addEventListener('click', () => {
+        conversation = [systemRole];
+        removeAllHistory();
+        removeAllData();
     });
 }
 main();
@@ -72,6 +79,4 @@ main();
 // TODO: 히스토리 UI 개선 (최대 높이 설정하기, 기록별 패딩 설정)
 // TODO: 히스토리 클릭시 클립보드에 해당 내용 복사하기
 // TODO: 제목 및 부제목 개선
-// TODO: 모바일 대응
 // TODO: 다크모드 대응
-// TODO: 모듈화

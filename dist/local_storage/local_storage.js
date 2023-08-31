@@ -12,3 +12,6 @@ export function getHistoryFromLocalStorage() {
     const modelList = JSON.parse(localStorage.getItem('history') || '[]');
     return modelList;
 }
+export function removeAllData() {
+    localStorage.clear();
+}

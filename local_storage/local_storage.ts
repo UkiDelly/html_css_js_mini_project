@@ -18,3 +18,7 @@ export function getHistoryFromLocalStorage(): AssistantModel[] {
   const modelList: AssistantModel[] = JSON.parse(localStorage.getItem('history') || '[]');
   return modelList
 }
+
+export function removeAllData() {
+  localStorage.clear()
+}
