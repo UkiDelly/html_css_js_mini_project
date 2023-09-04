@@ -3,7 +3,7 @@ import { AssistantModel } from "../model/role_model.js";
 import { copyToClipBoard } from "../utils.js";
 
 // 히스토리 가져오기
-var historyList: AssistantModel[] = getHistoryFromLocalStorage();
+let historyList: AssistantModel[] = getHistoryFromLocalStorage();
 
 // 최초 실행때, 히스토리 화면에 대화 내용을 표시
 initialHistory(historyList)

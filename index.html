@@ -11,39 +11,56 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script type="module" src="dist/history/history.js"></script>
     <script type="module" src="dist/conversation/converation.js"></script>
+    <script type="module" src="dist/dialog/dialog.js"></script>
     <script type="module" src="dist/index.js"></script>
   </head>
-  <header class="flex flex-col justify-center items-center w-full bg-white pt-5 pb-2 shadow-md" >
-    <h1 class="flex relative text-4xl" >글마루</h1>
-    <p class="mt-[10px]">
+  <header class="flex flex-row justify-between  items-center w-full bg-[rgba(255,255,255,0.5)] px-10 py-6" >
+    <h1 class="flex relative text-4xl self-start">글마루</h1>
+    <nav class="flex flex-row relative justify-end" >
+        <div></div>
+        <p id="how-to-use" class=" hover:cursor-pointer">사용법</p>
+        <div></div>
+    </nav>
+  </header>
+
+  
+
+  <body
+    class="bg-[#F8E9D7] flex flex-col relative w-full items-center justify-items-center">
+
+    <dialog id="dialog" class="flex-col rounded-lg p-5" >
+        <div class="flex flex-col items-center mx-10">
+          <div class="flex flex-col">
+            <p class="pb-2 ">사용법</p>
+            <ul class="flex flex-col list-decimal">
+              <li>변환하고자 하는 글을 입력해주세요</li>
+              <li>`변환` 버튼을 눌러주시고 잠시만 기다려 주세요</li>
+              <li>변환된 문장 또는 문단을 복사하여 원하는 곳에 붙여주세요.</li>
+              <li>대화 초기화를 원할 경우 `초기화`을, 대화 기록을 삭제 하고 싶은 경우,<br>
+                `지우기` 버튼을 눌러주세요.</li>
+            </ul>
+          </div>
+                <button id="close-dialog" class="flex relative mt-[10px] p-[10px] bg-sky-200 rounded-lg" type="submit">확인했습니다</button>
+        </div>
+    </dialog>
+    
+    
+    <p class="py-5 px-10">
       글마루는 ChatGPT의 도움을 받아 문장이나 문단을 전문성 있는 글로 바꿔주는
       서비스로, 짧은 문장이나 단편적인 문단을 길고 전문적인 글로 바꿔주는 데
       도움이 줍니다.
     </p>
-  </header>
-  <body
-    class="bg-[#F6F6F6] flex flex-col relative w-full items-center justify-items-center ">
-    <div class="flex flex-row justify-around w-full mt-[10px]" >
-      <div class="flex flex-col">
-        <p>글마루는 다음과 같은 사람들에게 유용합니다.</p>
-        <ul class="list-disc">
-          <li>글을 쓰는 데 어려움을 겪는 사람들</li>
-          <li>글을 길게 쓰고 싶은 사람들</li>
-          <li>글을 전문적으로 쓰고 싶은 사람들</li>
-        </ul>
-      </div>
-      
-      <div class="flex flex-col">
-        <p>사용법</p>
-        <ul class="flex flex-col list-decimal">
-          <li>변환하고자 하는 글을 입력해주세요</li>
-          <li>`변환` 버튼을 눌러주시고 잠시만 기다려 주세요</li>
-          <li>변환된 문장 또는 문단을 복사하여 원하는 곳에 붙여주세요.</li>
-          <li>대화 초기화를 원할 경우 `초기화`을, 대화 기록을 삭제 하고 싶은 경우,<br>
-            `지우기` 버튼을 눌러주세요.</li>
-        </ul>
-      </div>
+
+    <div class="flex flex-col self-start pl-10 pb-5">
+      <p class="pb-[5px]">글마루는 다음과 같은 사람들에게 유용합니다.</p>
+      <ul class="list-disc ">
+        <li>글을 쓰는 데 어려움을 겪는 사람들</li>
+        <li>글을 길게 쓰고 싶은 사람들</li>
+        <li>글을 전문적으로 쓰고 싶은 사람들</li>
+      </ul>
     </div>
+
+  
 
 
     <div class="flex flex-row justify-end w-full px-[20px]" >
@@ -232,7 +249,7 @@
 
     <div class="flex flex-col"></div>
     <div class="flex flex-row">
-      <p class="mr-10">ⓒ 2022 Daehyeon Song. all rights reserved.</p>
+      <p class="mr-10">ⓒ 2023 Daehyeon Song. all rights reserved.</p>
       <p class="text-gray-500" >icons by <a href="https://icons8.com/" class="underline text-gray-500" target="_blank">Icons8</a></p>
       <p></p>
     </div>

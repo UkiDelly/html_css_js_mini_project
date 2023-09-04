@@ -5,7 +5,7 @@ import { Model, SystemModel } from "../model/role_model.js";
 const systemModel = new SystemModel('assistant는 전문성 있는 글을 쓰는 전문가야')
 
 // 이전 대화가 없을 경우 새로운 대화를 생성
-var conversation: Model[] = getConverstationFromLocalStorage().length == 0 ? [systemModel] : getConverstationFromLocalStorage();
+let conversation: Model[] = getConverstationFromLocalStorage().length == 0 ? [systemModel] : getConverstationFromLocalStorage();
 
 // 새로운 대화 시작하기
 export function createNewConversation() {

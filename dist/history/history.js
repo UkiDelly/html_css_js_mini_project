@@ -1,7 +1,7 @@
 import { getHistoryFromLocalStorage, saveHistoryToLocalStorage } from "../local_storage/local_storage.js";
 import { copyToClipBoard } from "../utils.js";
 // 히스토리 가져오기
-var historyList = getHistoryFromLocalStorage();
+let historyList = getHistoryFromLocalStorage();
 // 최초 실행때, 히스토리 화면에 대화 내용을 표시
 initialHistory(historyList);
 export function createHistory(assistantModel) {
