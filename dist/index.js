@@ -53,6 +53,8 @@ async function main() {
     });
     // 초기화 버튼
     $resetButton.addEventListener('click', () => {
+        $textBefore.value = "";
+        $textAfter.value = "";
         createNewConversation();
         removeAllHistory();
         removeAllData();
