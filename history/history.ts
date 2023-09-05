@@ -11,7 +11,7 @@ initialHistory(historyList)
 export function createHistory(assistantModel: AssistantModel) {
   const $historyContainer = document.getElementById('history')
   const $history = document.createElement('p')
-  $history.classList.add('flex', 'border-2', 'p-[5px]', 'rounded-lg', 'w-full', 'hover:cursor-pointer')
+  $history.classList.add('flex', 'border-2', 'p-[5px]', 'my-[5px]', 'rounded-lg', 'w-full', 'h-fit', 'hover:cursor-pointer')
   $history.innerText = assistantModel.content
   $history.addEventListener('click', () => {
     copyToClipBoard(assistantModel.content)
@@ -25,7 +25,7 @@ export function initialHistory(data: AssistantModel[]) {
   const $historyContainer = document.getElementById('history')
   for (let index in data) {
     const $history = document.createElement('p')
-    $history.classList.add('flex', 'border-2', 'p-[5px]', 'rounded-lg', 'w-full')
+    $history.classList.add('flex', 'border-2', 'p-[5px]', 'my-[5px]', 'rounded-lg', 'w-full', 'h-fit')
     $history.innerText = data[index].content
     $historyContainer!.appendChild($history)
   }
