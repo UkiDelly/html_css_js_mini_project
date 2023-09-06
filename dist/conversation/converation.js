@@ -1,14 +1,14 @@
 import { retrieveConversationFromLocalStorage, saveConversationToLocalStorage } from "../local_storage/local_storage.js";
 import { SystemModel } from "../model/role_model.js";
 // Assistant이 전문성 있는 글을 쓰는 전문가임을 설정
-const systemModel = new SystemModel('assistant는 전문성 있는 글을 쓰는 전문가야');
+const systemModel = [new SystemModel('assistant는 전문성 있는 글을 쓰는 전문가야'), new SystemModel('assistant는 똑같은 질문을 받으면 더 정교하게 바꿔주는 글 전문가야')];
 // 이전 대화가 없을 경우 새로운 대화를 생성
-let conversation = retrieveConversationFromLocalStorage().length == 0 ? [systemModel] : retrieveConversationFromLocalStorage();
+let conversation = retrieveConversationFromLocalStorage().length == 0 ? systemModel : retrieveConversationFromLocalStorage();
 /**
  *  새로운 대화 시작하기
  */
 export function createNewConversation() {
-    conversation = [systemModel];
+    conversation = systemModel;
 }
 /**
  * 대화 내용에 새로운 Model 데이터를 추가하고 대화 내용을 로컬 저장소에 저장하는 함수
