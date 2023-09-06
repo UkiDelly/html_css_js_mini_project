@@ -1,28 +1,34 @@
-# 글 마루
+<h1 style="display: flex; justify-content: center; font-size: 50px"> 글마루 </h1>
 
-글마루는 '글'과 '마루'(= 넓은 공간)의 조합으로, 글자수를 넓혀주고, 전문성을 추가해주는 서비스임을 나타냅니다.
+글마루는 '글'과 '마루'(= 넓은 공간)의 조합으로, 글자수가 많아지고, 전문성을 추가해주는 서비스임을 나타냅니다.
 이 서비스는 기획하게 된 이유는,점차 사람들의 어휘력이 낮아지고 작문 할 일이 적어서, 글을 쓰는 데 어려움이 있는 분들이 (저 포함) 많다는 말을 들어 개발한 서비스입니다.
 
-## 목차
+<br>
+
+<p style="font-size: 30px"> [목차] </p>
 
 1. 핵심 기능
 2. 변환기 사용법
 3. 히스토리
 4. 대화 초기화, 지우기
-5. 개발 내용
+5. 개발 관련
 
-## 핵심 기능
+<br>
+
+# [핵심 기능]
 
 이 서비스의 핵심 기능은 다음과 같습니다.
 
 1. **전문성 있는 글로 변환**해줍니다.
-   - 전문성이라 함은, 보고서 에세이 등, 공식적인 자리에 사용하기 적합한 어휘를 의미합니다.
-2. 기존의 문맥에 맞춰서 글을 작성해줍니다.
-3. 새로고침, 사이트에서 나가도 변환된 내용 히스토리, 대화를 이어서 할수 있습니다.
+   - 전문성이라 함은, 보고서 에세이, 논문 등 공식적인 자리에 사용하기 적합한 어휘를 의미합니다.
+2. 기존의 문맥에 읽고, 글을 작성해줍니다.
+3. 새로고침, 사이트에서 나가도 모든 데이터를 저장하기에 다시 접속하면 대화를 이어서 할수 있습니다.
 4. 변환 결과 또는 히스토리에 저장된 결과를 클릭 하나로 간편하게 클립보드에 복사할 수 있습니다.
 5. 모바일 화면에서도 사용할수 있게 모바일 환경에도 대응합니다.
 
-## 변환기 사용법은 다음과 같습니다.
+<br>
+
+# [변환기 사용법]
 
 1. 변환기에 변환하고자 하는 문장, 문단을 작성합니다.
 2. 변환 버튼을 클릭한 후 변환이 될때까지 기다려줍니다. (문장, 문단이 길수록 변환하는게 시간이 걸릴수 있습니다.)
@@ -31,7 +37,9 @@
 
 3. 변환된 글을 확인하고 복사 버튼을 눌러 복사하거나, 결과가 맘에 들지 않을 경우, 변환 버튼을 눌러 다시 변환을 시도해볼수 있습니다.
 
-## 히스토리
+<br>
+
+# [히스토리]
 
 변환하여 나온 결과들은 결과 창뿐만 아니라, 히스토리 창에도 표시가 됩니다.
 
@@ -39,7 +47,9 @@
 
 변환된 글이 맘에 들지 않아 다시 변환해도 히스토리에 저장이 되므로, 이전 변환 기록이 필요하면 클릭해서 복사할 수 있습니다.
 
-## 대화 초기화, 지우기
+<br>
+
+# [대화 초기화, 지우기]
 
 ![대화 초기화,대화 삭제](readme_asset/image-3.png)
 
@@ -49,7 +59,92 @@ _**대화를 초기화하면 대화 기록도 삭제되기 때문에 주의 해�
 
 `대화 기록 지우기`는 이전에 변환한 글을 모두 삭제합니다. 하지만 대화 내용은 삭제 하지 않아 문맥 유추에 영향을 미치는 것이 없습니다.
 
-## 개발 내용
+<br>
+
+# [개발]
+
+### 1. TypeScript 사용 이유
+
+JavaScript는 타입에서 자유롭기 때문에, 타입 변환을 방지하고 버그를 최소화하고, 타입을 알려줌으로써 코드를 좀더 안정적으로 작성하고, `enum`, `interface` 타입을 사용하기 위해 타입스크립트를 사용했습니다.
+
+### 2. Tailwind 사용 이유
+
+웹 개발을 할때 로직뿐만 아니라 CSS에도 많은 시간을 할당합니다. UI 구현에 많은 시간이 걸리기에 이를 조금이라도 덜고 또 모바일 환경에 쉽게 대응하고, 로직에 집중하기 위해 Tailwind를 사용했습니다.
+
+### 3. 폴더 구조
+
+현재 폴더 구조는 기능에 따라 분류하였습니다.
+
+- `conversation` - 대화 내용 관련된 기능
+- `dialog` - 다이얼로그를 조작하고 관리하는 기능
+- `gpt` - GPT에게 요청하는 기능
+- `dist` - `js`로 컴파일된 파일
+- `history` - 히스토리 관련 기능
+- `local_storage` - 로컬 스토리지를 조작, 관리하는 기능
+- `model` - 프로젝트 내에서 쓰이는 모델들의 정의
+
+<!-- ### 4. 모델
+
+데이터를 보다 효율적으로 활용하기 위해 다음과 같은 모델들을 정의 했습니다.
+
+다음은, ChatGPT에게 요청하기 위해 정의한 모델들입니다.
+
+```typescript
+// role
+export enum Role {
+  user = 'user',
+  system = 'system',
+  assistant = 'assistant',
+}
+
+// { "role": ~, "content": ~ } 인터페이스
+export interface Model {
+  role: Role;
+  content: string;
+}
+
+// Model의 구현체
+// { "role": "user", "content": ~ } 형태
+export class UserModel implements Model {
+  role: Role = Role.user;
+  content: string;
+
+  constructor(content: string) {
+    this.content = content + '<- 이 문장을 전문성있는 말로 변경하고 사실과는 다른 말과 다른 대답은 하지마';
+  }
+}
+
+// Model의 구현체
+// { "role": "system", "content": ~ } 형태
+export class SystemModel implements Model {
+  role: Role = Role.system;
+  content: string;
+
+  constructor(content: string) {
+    this.content = content;
+  }
+}
+
+// Model의 구현체
+// { "role": "assistant", "content": ~ } 형태
+export class AssistantModel implements Model {
+  role: Role = Role.assistant;
+  content: string;
+
+  constructor(content: string) {
+    this.content = content;
+  }
+}
+``` -->
+
+<!-- - `Model` - `{ role: ~ , content: ~ }`의 인터페이스
+- `UserModel` , `SystemModel`, `AssistantModel` - `Model`의 구현체
+- `ChatGptResponseInterface` - `JSON.stringify`로 json을 파싱하면 나오는 `object` 형태가 되기에 활용하기 위해 모델로 변환하기 위한 인터페이스
+- `ChatGptResponse` - `ChatGptResponseInterface`의 구현체 -->
+
+<!-- <br> -->
+
+<!-- ## 개발 내용
 
 사용된 기술
 
@@ -135,4 +230,4 @@ ChatGpt에게 요청하는 부분을 따로 분리하여 함수로 정의 했습
 
 - `createHistory()` 함수는 `AssistantModel`을 화면에 표시할 수 있도록 html 태그를 생성해주는 함수입니다.
 
-- `removeHistory()` 함수는 지우기 버튼을 클릭했을때 화면에 표시된 history 태그들을 전부 삭제하기 위한 함수입니다.
+- `removeHistory()` 함수는 지우기 버튼을 클릭했을때 화면에 표시된 history 태그들을 전부 삭제하기 위한 함수입니다. -->
