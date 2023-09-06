@@ -139,7 +139,7 @@ root
 ├── local_storage
 │   └── local_storage.ts // ---- 로컬 스토리지 기능
 ├── model
-│   ├── chat_gpt_response.ts //- ChatGPT 응담의 모델
+│   ├── chat_gpt_response.ts //- ChatGPT 응답 모델
 │   └── role_model.ts // ------- ChatGPT 요청에 필요한 모델들
 ├── readme_asset // ------------ 리드미 asset
 │   ├── ask.png

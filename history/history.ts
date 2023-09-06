@@ -1,6 +1,6 @@
 import { getHistoryFromLocalStorage, saveHistoryToLocalStorage } from "../local_storage/local_storage.js";
 import { AssistantModel } from "../model/role_model.js";
-import { copyToClipBoard } from "../utils.js";
+import { copyToClipBoard, showToast } from "../utils.js";
 
 // 히스토리 데이터
 let historyList: AssistantModel[] = getHistoryFromLocalStorage();
@@ -20,6 +20,7 @@ function createHistory(assistantModel: AssistantModel) {
   $history.innerText = assistantModel.content
   $history.addEventListener('click', () => {
     copyToClipBoard(assistantModel.content)
+    showToast("복사완료!")
   })
 
   $historyContainer!.appendChild($history)

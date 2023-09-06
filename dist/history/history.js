@@ -1,5 +1,5 @@
 import { getHistoryFromLocalStorage, saveHistoryToLocalStorage } from "../local_storage/local_storage.js";
-import { copyToClipBoard } from "../utils.js";
+import { copyToClipBoard, showToast } from "../utils.js";
 // 히스토리 데이터
 let historyList = getHistoryFromLocalStorage();
 // 최초 실행때, 히스토리 화면에 대화 내용을 표시
@@ -16,6 +16,7 @@ function createHistory(assistantModel) {
     $history.innerText = assistantModel.content;
     $history.addEventListener('click', () => {
         copyToClipBoard(assistantModel.content);
+        showToast("복사완료!");
     });
     $historyContainer.appendChild($history);
 }
