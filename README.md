@@ -105,7 +105,8 @@ root
 ├── README.md
 ├── assets
 │   ├── Yeongdeok_Haeparang.otf
-│   └── Yeongdeok_Haeparang.ttf
+│   ├── Yeongdeok_Haeparang.ttf
+│   └── icons8-paper-16.png
 ├── conversation
 │   └── converation.ts // ------ 대화 내용 관련 기능
 ├── css
