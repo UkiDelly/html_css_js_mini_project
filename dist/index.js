@@ -31,7 +31,7 @@ async function main() {
     const $copyButton = document.getElementById('copy');
     const $clearButton = document.getElementById('clear');
     const $resetButton = document.getElementById('reset-button');
-    // 변환 버튼을 눌렀을때
+    // 변환 버튼을 눌렀을때 실행할 이벤트
     $transferButton?.addEventListener('click', async () => {
         $transferButton.disabled = true;
         $transferButton.style.backgroundColor = 'lightgray';
@@ -41,17 +41,17 @@ async function main() {
         $transferButton.style.backgroundColor = 'rgb(186 230 253)';
         $transferButton.innerText = "변환";
     });
-    // 클립보드에 글을 복사
+    // 클립보드에 글을 복사하는 이벤트
     $copyButton?.addEventListener('click', async () => {
         await copyToClipBoard($textAfter.value);
         window.alert('복사 완료!');
     });
-    // 히스토리 초기화
+    // 히스토리만 초기화하는 이벤트
     $clearButton?.addEventListener('click', () => {
         removeAllHistory();
         localStorage.removeItem('history');
     });
-    // 초기화 버튼
+    // 대화 내용뿐만 아니라 히스토리도 초기화하는 이벤트
     $resetButton.addEventListener('click', () => {
         $textBefore.value = "";
         $textAfter.value = "";
@@ -60,7 +60,5 @@ async function main() {
         removeAllData();
     });
 }
+// =========== 실행 ============
 main();
-// TODO: 히스토리 UI 개선 (최대 높이 설정하기, 기록별 패딩 설정)
-// TODO: 제목 및 부제목 개선
-// TODO: 다크모드 대응
