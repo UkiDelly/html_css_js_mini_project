@@ -2,7 +2,6 @@
 
 ![전체화면](/readme_asset/guelmaru.png)
 
-
 _**AdBlock 또는 광고 차단 확장이 있을 경우, 서비스가 정상적으로 동작 하지 않습니다. 서비스를 이용하기 위해서는 잠시 해제해주시거나 시크릿모드로 접속할 것을 권장드립니다.**_
 
 ---
@@ -22,6 +21,20 @@ _**AdBlock 또는 광고 차단 확장이 있을 경우, 서비스가 정상적�
 [1. 핵심 기능](#핵심-기능) <br>
 [2. 변환기 사용법](#변환기-사용법) <br>
 [3. 개발 이야기](#개발) <br>
+
+<br>
+
+# [기술 스택]
+
+- TypeScript
+- Tailwind
+
+<br>
+
+# [코드 컨벤션]
+
+1. 폴더 및 파일 이름은 `snake case`로 지정
+2. 변수, 함수 이름은 `camel case`로 지정
 
 <br>
 
@@ -63,7 +76,7 @@ _**AdBlock 또는 광고 차단 확장이 있을 경우, 서비스가 정상적�
 
 변환하여 나온 결과들은 결과 창뿐만 아니라, 히스토리 창에도 표시가 됩니다.
 
-![히스토리 창](readme_asset/image-2.png)
+![히스토리 창](readme_asset/image_2.png)
 
 변환된 글이 맘에 들지 않아 다시 변환해도 히스토리에 저장이 되므로, 이전 변환 기록이 필요하면 클릭해서 복사할 수 있습니다.
 
@@ -73,7 +86,7 @@ _**AdBlock 또는 광고 차단 확장이 있을 경우, 서비스가 정상적�
 
 ![대화 초기화, 대화 삭제](readme_asset/new_conversation.gif)
 
-![대화 초기화,대화 삭제](readme_asset/image-3.png)
+![대화 초기화,대화 삭제](readme_asset/image_3.png)
 
 글마루는 이전에 변환된 글을 모두 저장하기 때문에, 이전에 변환된 글의 문맥을 유추하여 새롭게 변환 된 글에 영향을 줄 수 있습니다. 이럴때는 `대화 초기화` 버튼을 클릭하시면 이전에 대화한 기록이 삭제 되기에 이전에 변환된 글과 지금 변환하려는 글이 서로 연관성이 떨어진다면 `대화 초기화`를 하여 영향을 받지 않게 해주시는게 좋습니다.
 
@@ -102,7 +115,7 @@ JavaScript는 타입에서 자유롭기 때문에, 타입 변환을 방지하고
 
 데이터를 보다 효율적으로 관리하고 사용하기 위해 모델을 정의하고 사용했습니다.
 
-![모델](/readme_asset/‎models.‎001.png)
+![모델](/readme_asset/models.png)
 
 ---
 
@@ -112,12 +125,11 @@ JavaScript는 타입에서 자유롭기 때문에, 타입 변환을 방지하고
 기능의 추가, 수정, 삭제를 원할하게 하기 위해서 이렇게 분류하였습니다.
 
 ```typescript
-root
 ├── README.md
 ├── assets
 │   ├── Yeongdeok_Haeparang.otf
 │   ├── Yeongdeok_Haeparang.ttf
-│   └── icons8-paper-16.png
+│   └── icons8_paper_16.png
 ├── conversation
 │   └── converation.ts // ------ 대화 내용 관련 기능
 ├── css
@@ -145,7 +157,7 @@ root
 │   └── gpt.ts // -------------- GPT 요청 기능
 ├── history
 │   └── history.ts // ---------- 히스토리 기능
-├── index.html  // ------------- 메인 페이지
+├── index.html // -------------- 메인 페이지
 ├── index.ts // ---------------- 엔트리 파일
 ├── local_storage
 │   └── local_storage.ts // ---- 로컬 스토리지 기능
@@ -154,13 +166,17 @@ root
 │   └── role_model.ts // ------- ChatGPT 요청에 필요한 모델들
 ├── readme_asset // ------------ 리드미 asset
 │   ├── ask.png
-│   ├── chatgpt_response_model.png
+│   ├── error.png
+│   ├── guelmaru.png
 │   ├── history.png
-│   ├── image-1.png
-│   ├── image-2.png
-│   ├── image-3.png
+│   ├── how_to_use.png
+│   ├── image_1.png
+│   ├── image_2.png
+│   ├── image_3.png
 │   ├── local_storage.png
-│   └── roles.png
+│   ├── models.png
+│   ├── new_conversation.gif
+│   └── using.gif
 ├── tailwind.config.js // -------- Tailwind 설정
 ├── tsconfig.json // ------------- 타입스크립트 설정
 └── utils.ts // ------------------ 유틸 기능
@@ -179,13 +195,3 @@ root
 `GET http://127.0.0.1:5500/dist/gpt/gpt.js net::ERR_BLOCKED_BY_CLIENT` <- 이런 에러를 마주했습니다. <br>
 
 원인을 분석해보니 브라우저 내의 애드블럭 익스텐션으로 인해, js 모듈을 불러오지 못하는 것을 알게 되었습니다. `스크릿 모드` 또는 애드블럭을 해제함으로써, 해당 문제를 해결할 수 있었습니다.
-
-<!-- 1. 이름 짓기
-
-히스토리는 history라고 명명할수 있지만, 문맥 읽는 기능을 어떻게 설명해야할지 몰라 그냥 `대화, converstation`이라고 지었습니다.
-
-<br>
-
-2. 컴포넌트화
-
-재사용성을 고려하여 몇몇 태그들을 컴포넌트화 하여 사용하려고 했지만, `Web component` 주어진 시간내에 익히고 사용하기에 촉박하다고 판단하여 사용하지 않았습니다. -->
