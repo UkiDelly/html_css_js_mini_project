@@ -3,7 +3,7 @@
 글마루는 '글'과 '마루'(= 넓은 공간)의 조합으로, 글자수가 많아지고, 전문성을 추가해주는 서비스임을 나타냅니다.
 이 서비스는 기획하게 된 이유는,점차 사람들의 어휘력이 낮아지고 작문 할 일이 적어서, 글을 쓰는 데 어려움이 있는 분들이 (저 포함) 많다는 말을 들어 개발한 서비스입니다.
 
-**Github** : https://github.com/UkiDelly/guelmaru <br>
+**GitHub** : https://github.com/UkiDelly/guelmaru <br>
 **서비스** : https://ukidelly.github.io/guelmaru/
 
 <br>
