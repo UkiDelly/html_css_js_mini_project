@@ -30,6 +30,7 @@ _**AdBlock 또는 광고 차단 확장이 있을 경우, 서비스가 정상적�
 
 ## [기술 스택]
 
+- Html
 - TypeScript
 - Tailwind
 
